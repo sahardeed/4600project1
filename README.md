@@ -1,7 +1,7 @@
 # 4600project1
 
 
-
+**NOTE: EDITED main.go FILE IS IN THE PROJECT1 FOLDER! **
 # Process Scheduling Algorithms
 
 This program carries out different scheduling algorithms, including First Come First Serve (FCFS), Shortest Job First (SJF), Shortest Job First with Priority (SJF Priority), Round-Robin (RR)
