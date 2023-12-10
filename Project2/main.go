@@ -86,7 +86,11 @@ func handleInput(w io.Writer, input string, exit chan<- struct{}) error {
 	case "bash":
 		return handleBash(args...)
 	case "zsh":
-		return handleZsh(args...)	
+		return handleZsh(args...)
+	case "csh":
+		return handleCsh(args...)
+	case "tcsh":
+		return handleTcsh(args...)
 	}
 
 	return executeCommand(name, args...)
@@ -140,6 +144,34 @@ func handleZsh(args ...string) error {
 
 	command := args[0]
 	cmd := exec.Command("zsh", "-c", command)
+	cmd.Stderr = os.Stderr
+	cmd.Stdout = os.Stdout
+
+	return cmd.Run()
+}
+
+func handleCsh(args ...string) error {
+	if len(args) < 1 {
+		fmt.Println("Usage: csh [command]")
+		return nil
+	}
+
+	command := args[0]
+	cmd := exec.Command("csh", "-c", command)
+	cmd.Stderr = os.Stderr
+	cmd.Stdout = os.Stdout
+
+	return cmd.Run()
+}
+
+func handleTcsh(args ...string) error {
+	if len(args) < 1 {
+		fmt.Println("Usage: tcsh [command]")
+		return nil
+	}
+
+	command := args[0]
+	cmd := exec.Command("tcsh", "-c", command)
 	cmd.Stderr = os.Stderr
 	cmd.Stdout = os.Stdout
 
